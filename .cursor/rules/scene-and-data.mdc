@@ -1,0 +1,62 @@
+---
+description: Как сцена и Data связываются, создают детей и шлют сигналы
+globs: "**/*.gd"
+alwaysApply: false
+---
+
+# Сцена и Data
+
+Единственный вход сцены — сеттер `data`. Он раскладывает детей, подписывается на сигналы и собирает экземпляры.
+
+```gdscript
+var data: ChainData:
+	set(value_):
+		data = value_
+		connect_datas()
+		connect_signals()
+		init_cells()
+```
+
+## Дети в сцене
+
+Все узлы, известные заранее, стоят в `.tscn` как дочерние. Сцена не создаёт их кодом. `%ChainCells`, `%PileCells`, `%GobbleLayer`, `%PhantomLayer`, `%Hud`, фон, слои — всё это видно в редакторе и лежит по своим местам.
+
+Ссылку на такого ребёнка давать через `@export` (если он из другой ветки) или через `%UniqueName` (если внутри той же сцены). `get_node("путь/по/дереву")` не использовать.
+
+Код создаёт только то, чего заранее нет:
+
+- элементы коллекций (`init_xs` → `add_x`, где `x` — data-единица);
+- разовые рантайм-объекты, которых не может быть в сцене (например, копия для drag&drop).
+
+Если узел можно положить в сцену — он кладётся в сцену. Если `add_child` вызывается не в `add_x` — это повод перечитать это правило.
+
+## Связка
+
+`connect_datas` раздаёт вложенные data уже стоящим в сцене нодам: `pile_field.data = data.pile`.
+
+`connect_signals` вешает обработчики и сразу вызывает их, чтобы картинка совпала с состоянием:
+
+```gdscript
+func connect_signals() -> void:
+	data.chain.tile_placed.connect(_on_tile_placed)
+	_on_tile_placed()
+```
+
+`init_xs` проходит коллекцию data и зовёт `add_x`. `add_x` создаёт один экземпляр: сцена из `preload("uid://...")`, `add_child` в узел с уникальным именем `%ChainCells`, затем `cell.data = cell_data_`. Повторная сборка начинается с `Helper.clear_children`.
+
+Ссылку на соседа, который уже есть в сцене, давать через `@export`, не через `get_node` по пути.
+
+## Правила записи
+
+Изменение состояния идёт через поле data. Сеттер пишет значение и шлёт сигнал. Сцена в `_on_*` только обновляет вид и твины.
+
+```gdscript
+var chain_size: int = 0:
+	set(value_):
+		chain_size = value_
+		chain_size_changed.emit()
+```
+
+Дочерняя data в `_init` сама регистрируется у родителя: `chain.cells.append(self)`, `coord_to_cell[coord] = self`. Сцена data не конструирует. Корневые data создаёт только `Mother`.
+
+Длительность твина брать из `Gear`: `Gear.place_tile * Gear.tempo`. Числа — из `Catalog`, соответствия — из `Digest`, случайность — из `Helper.rng`.

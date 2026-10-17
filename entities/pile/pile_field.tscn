@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bpilefieldsc1"]
+
+[ext_resource type="Script" uid="uid://bpilefieldgd1" path="res://entities/pile/pile_field.gd" id="1_field"]
+
+[node name="PileField" type="Node2D"]
+script = ExtResource("1_field")
+
+[node name="PileCells" type="Node2D" parent="."]
+unique_name_in_owner = true

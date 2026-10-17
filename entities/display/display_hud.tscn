@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cdisplayhuds1"]
+
+[ext_resource type="Script" uid="uid://cdisplayhudg1" path="res://entities/display/display_hud.gd" id="1_hud"]
+
+[node name="DisplayHud" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="Panel" type="VBoxContainer" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 360.0
+offset_bottom = 360.0
+
+[node name="ChainSize" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LoopRed" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LoopYellow" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LoopGreen" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="LoopBlue" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GobbleCount" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PhaseLabel" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ResultScreen" type="Label" parent="Panel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2

@@ -1,0 +1,20 @@
+---
+description: Как добавлять enum в Bozo и как из них получать строки
+globs: "global/Bozo.gd"
+alwaysApply: false
+---
+
+# Enum в Bozo
+
+Все перечисления живут в `Bozo`. У каждого есть `NONE = 0`. Остальные значения продолжают общий целочисленный ряд и не повторяются между enum. Следующее значение — на единицу больше текущего максимума.
+
+Если имя нужно строкой или путём к сцене, enum регистрируется в `Type`, `type_to_index` и `type_to_enum`. Строку даёт `Bozo.enum_to_string(Bozo.Type.MASTER, type)` — ключ в нижнем регистре.
+
+Сцена варианта собирается из этой строки, а не из `match` по каждому значению:
+
+```gdscript
+var str_type := Bozo.enum_to_string(Bozo.Type.MASTER, master_type)
+var path := "res://entities/continent/guild/master/%s/%s.tscn" % [str_type, str_type]
+```
+
+Новое число, размер или список — в `Catalog`. Новая таблица «ключ → значение» — в `Digest`. В сцену и в data их не копировать.

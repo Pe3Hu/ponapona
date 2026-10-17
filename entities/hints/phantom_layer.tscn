@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cphantomlyrs1"]
+
+[ext_resource type="Script" uid="uid://cphantomlyrg1" path="res://entities/hints/phantom_layer.gd" id="1_layer"]
+
+[node name="PhantomLayer" type="Node2D"]
+script = ExtResource("1_layer")
+
+[node name="Phantoms" type="Node2D" parent="."]
+unique_name_in_owner = true

@@ -1,0 +1,26 @@
+---
+description: Имена, типы и подписи функций в GDScript ata
+globs: "**/*.gd"
+alwaysApply: false
+---
+
+# Подписи и имена
+
+Параметр заканчивается на `_`, тип указан, возвращаемый тип указан.
+
+```gdscript
+func _init(pie_: PieData) -> void:
+func add_slice(slice_data_: SliceData) -> void:
+func get_total_volume_amount(volume_: int) -> int:
+```
+
+- Функции и поля — `snake_case`. Классы — `PascalCase`.
+- `bool` начинается с `is_`: `is_locked`, `is_auto_play`.
+- Словарь называется по направлению: `type_to_method`, `volume_to_stair`.
+- Коллекции типизированы: `Array[SliceData]`.
+- Чтение — `get_`. Изменение — `apply_`, `update_`, `refill_`, `recalc_`. Сборка — `init_`, `add_`.
+- Сигнал называется по событию: `amount_changed`, `draw_phase`. Обработчик — `_on_amount_changed`.
+- Скаляр в `Catalog` — `UPPER_SNAKE`. Массив и словарь — `snake_case`.
+- Ранний выход в одну строку: `if data.pressure == null: return`.
+- Блок инициализации оборачивается в `#region init` / `#endregion`.
+- Отступ — таб. Чужой код рядом не переформатировать.
