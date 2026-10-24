@@ -1,4 +1,6 @@
-res://global/
-D:/godot/templates/blank template/assets/fonts/
+res://entities/cloth/chunk/patterns/
+D:/godot/templates/tantrix template/assets/fonts/
+res://entities/cloth/chunk/tilesets/
 res://assets/fonts/
 res://entities/world/
+res://global/

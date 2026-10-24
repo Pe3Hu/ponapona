@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dv1mc17yeqcbq"]
+
+[ext_resource type="Script" uid="uid://q5suynu18b52" path="res://tantrix/sandbox/sandbox.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://cl2qothlfcoo" path="res://tantrix/board/board.tscn" id="2_board"]
+[ext_resource type="PackedScene" path="res://tantrix/sandbox/hand_tile.tscn" id="3_hand"]
+[ext_resource type="Script" path="res://tantrix/sandbox/camera.gd" id="4_camera"]
+
+[node name="Sandbox" type="Node"]
+script = ExtResource("1_script")
+hand_tile_scene = ExtResource("3_hand")
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+enabled = true
+script = ExtResource("4_camera")
+
+[node name="Board" parent="." instance=ExtResource("2_board")]
+unique_name_in_owner = true
+position = Vector2(0, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Hud" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BagLabel" type="Label" parent="CanvasLayer/Hud"]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 24.0
+offset_right = 700.0
+offset_bottom = 64.0
+text = "В мешке: 0"
+
+[node name="StatusLabel" type="Label" parent="CanvasLayer/Hud"]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 72.0
+offset_right = 900.0
+offset_bottom = 112.0
+text = "Выберите тайл"
+
+[node name="HintLabel" type="Label" parent="CanvasLayer/Hud"]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 120.0
+offset_right = 900.0
+offset_bottom = 160.0
+
+[node name="Hand" type="HBoxContainer" parent="CanvasLayer/Hud"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -210.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+theme_override_constants/separation = 16

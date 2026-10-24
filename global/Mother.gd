@@ -1,11 +1,11 @@
 extends Node
 
 
-var chain: ChainData
+var sandbox: SandboxData
 
 
+#region init
 func _ready() -> void:
-	#region init
-	Digest.init_tile_links()
-	chain = ChainData.new()
-	#endregion
+	sandbox = SandboxData.new()
+	sandbox.init_sandbox()
+#endregion

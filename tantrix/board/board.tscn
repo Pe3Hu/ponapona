@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://cl2qothlfcoo"]
+
+[ext_resource type="Script" uid="uid://mlg3y24vyeou" path="res://tantrix/board/board.gd" id="1_mqi48"]
+[ext_resource type="PackedScene" uid="uid://drkbgoocc324t" path="res://tantrix/cell/cell.tscn" id="2_fegai"]
+[ext_resource type="Texture2D" uid="uid://dowx6k3ycpxmm" path="res://tantrix/board/images/m_merged.png" id="3_fegai"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ofhcr"]
+texture = ExtResource("3_fegai")
+texture_region_size = Vector2i(190, 164)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_fegai"]
+tile_shape = 3
+tile_offset_axis = 1
+tile_size = Vector2i(190, 164)
+sources/10 = SubResource("TileSetAtlasSource_ofhcr")
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_mqi48")
+cell_scene = ExtResource("2_fegai")
+
+[node name="Cells" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Notchs" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+position = Vector2(-95, -82)
+tile_set = SubResource("TileSet_fegai")
+
+[node name="Tiles" type="Node2D" parent="Notchs"]
+unique_name_in_owner = true

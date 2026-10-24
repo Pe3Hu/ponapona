@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bhandtile00001"]
+
+[ext_resource type="Script" path="res://tantrix/sandbox/hand_tile.gd" id="1_script"]
+
+[node name="HandTile" type="Control"]
+custom_minimum_size = Vector2(140, 140)
+script = ExtResource("1_script")
+
+[node name="Pivot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Hex" type="Polygon2D" parent="Pivot"]
+unique_name_in_owner = true
+color = Color(0.93, 0.93, 0.95, 1)
+
+[node name="Lines" type="Node2D" parent="Pivot"]
+unique_name_in_owner = true

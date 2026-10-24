@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://ycwktp1peli7"]
+
+[ext_resource type="Script" uid="uid://bdo57k50iapp7" path="res://tantrix/tile/kink/kink.gd" id="1_mh6a3"]
+
+[node name="Kink" type="Line2D"]
+width = 24.0
+default_color = Color(0.7162962, 0.7162962, 0.7162962, 1)
+script = ExtResource("1_mh6a3")

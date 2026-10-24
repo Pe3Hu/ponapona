@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cg4jrdbj3apkk"]
+
+[ext_resource type="Texture2D" uid="uid://dtkbbc7ojykhu" path="res://tantrix/tile/seam/images/sharp.png" id="1_7n1kx"]
+[ext_resource type="Script" uid="uid://ct7mo6g7080er" path="res://tantrix/tile/seam/seam.gd" id="1_alxba"]
+
+[node name="Seam" type="Sprite2D"]
+visible = false
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_7n1kx")
+script = ExtResource("1_alxba")
